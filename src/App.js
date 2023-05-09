@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
+
 import "./App.scss";
 
 function App() {
   const [input, setInput] = useState("");
   const [btn, setBtn] = useState([]);
   const [title, TitleCamp] = useState("");
+  const [classe, Classecamp] = useState("");
+  
   const TitleChange = (event) => {
     TitleCamp(event.target.value);
   };
@@ -18,6 +21,7 @@ function App() {
   const handleClick = () => {
     const newTask = {
       id: Math.floor(Math.random() * 10000), // Gerar um ID aleatório único
+      classe: classe || "padrao",
       Titulo: title,
       tarefa: input,
       Dia: formatDate(date),
@@ -66,9 +70,47 @@ function App() {
   function handleDateChange(event) {
     console.log(setDate(event.target.value));
   }
+  const [btnw, setBtno] = useState([]);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const bn = () => {
+    const newTaske = [
+      { Class: "App-note-tema-1" ,color:"post-it-purple"},
+      { Class: "App-note-tema-2" ,color:"post-it-pink"},
+      { Class: "App-note-tema-3" ,color:"post-it-blue"},
+      { Class: "App-note-tema-4" ,color:"post-it-yellow"},
+      { Class: "App-note-tema-5" ,color:"post-it-green"},
+      { Class: "App-note-tema-6" ,color:"posit-it-lovely"},
+    ];
+    setBtno(newTaske);
+  };
+  const handleMouseEnter = (index) => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+  };
+  function handleDivClick(value) {
+    Classecamp(value)
+  }
+  useEffect(() => {
+    bn();
+  }, []);
   return (
     <div className="App">
+          {btnw.map((task, index) => (
+       
+       <div
+        key={index}
+         className={`App-note-tema ${task.Class} ${index === hoveredIndex ? 'hover' : ''}`}
+         onMouseEnter={() => handleMouseEnter(index)}
+         onMouseLeave={handleMouseLeave}
+         onClick={() => handleDivClick(task.color)}
+       >
+       </div>
+     ))}
       <div className="App-note">
+
         <input
           className="App-inptext"
           type="text"
@@ -87,7 +129,6 @@ function App() {
         </div>
         <div className="App-Function">
           <input
-            min-date
             min="2023-01-01"
             max="2024-01-01"
             className="App-inpdate"
@@ -96,18 +137,15 @@ function App() {
             onChange={handleDateChange}
           />
           <button onClick={handleClick}>
-          
             Anotar
-            <BsPencilSquare
-              style={{ height: "15px", width: "12px" }}
-            />
+            <BsPencilSquare style={{ height: "15px", width: "12px" }} />
           </button>
         </div>
       </div>
       <div className="App Flex">
         {btn.map((task) => {
           return (
-            <div className="App-card" key={task.id}>
+            <div className={`App-card ${task.classe}`} key={task.id}>
               <div className="App-before"></div>
               <b onClick={() => handleRemove(task.id)}>
                 <MdOutlineDeleteForever

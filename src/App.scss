@@ -7,15 +7,19 @@
   font-family: 'Montserrat Medium';
   src: url('/font/Montserrat-Medium.ttf');
 }
-
+ 
 $border: black;
 $white-smoke: #F5f5f5;
 $lineColor: rgba(49, 49, 49, 0.795);
-
+$post-it-purple:#c7003f;
+$post-it-pink:#f90050;
+$post-it-blue:#8dbdebab;
+$post-it-yellow:	#f2cd4f;
+$post-it-green:#88eed0;
+$posit-it-lovely:#fe6763;
 :root {
   --paperColor: #ffc;
   --lineColor: rgba(0, 0, 0, .3);
-
   --lineSpacing: 2rem;
   --lineHeight: 1px;
   --dashWidth: 1px;
@@ -29,19 +33,97 @@ $lineColor: rgba(49, 49, 49, 0.795);
 
 body,
 html {
-  background-color: $white-smoke ;
+  //background-color: $white-smoke ;
+  z-index: 0;
 }
 
 .App {
+  transition: all 1s ease-out;
+
+  z-index: 99;
   margin: 0 Auto;
   text-align: center;
-
+  &-theme{
+    position: relative;
+  }
+  .App-note-tema-1.hover{
+    transform: translate(19px,0);
+    transition: all 0.2s ease;
+    width:45px;
+  }
+  .App-note-tema-2.hover{
+    transform: translate(19px,0);
+    transition: all 0.2s ease;
+    width:45px;
+  }
+  .App-note-tema-3.hover{
+    transform: translate(19px,0);
+    transition: all 0.2s ease;
+    width:45px;
+  }
+  .App-note-tema-4.hover{
+    transform: translate(19px,0);
+    transition: all 0.2s ease;
+    width:45px;
+  }
+  .App-note-tema-5.hover{
+    transform: translate(19px,0);
+    transition: all 0.2s ease;
+    width:45px;
+  }
+  .App-note-tema-6.hover{
+    transform: translate(19px,0);
+    transition: all 0.2s ease;
+    width:45px;
+  }
+  &-note-tema{
+    display: block;
+    content: '';
+    z-index:0;
+    position:absolute;
+    left:-305pt;
+    right: 0px;
+    margin: 0 auto;
+    width:35px;
+    transform: translate(22px,0);
+    transition: all 0.4s ease;
+    height: 30px;
+    background-color: rgba(162, 0, 255, 0.466);
+    border: 1px solid ;
+  }
+  &-note-tema-1{
+  background-color: $post-it-purple;
+} &-note-tema-1.hover{
+  background-color: $post-it-purple;
+}
+&-note-tema-2{
+  height: 30px;
+  top: 43px;
+  background-color: $post-it-pink;
+}
+&-note-tema-3{
+  top: 76px;
+  background-color: $post-it-blue;
+}
+&-note-tema-4{
+  top:109px;
+  background-color: $post-it-yellow;
+}
+&-note-tema-5{
+  background-color: $post-it-green;
+  top: 142px;
+}
+&-note-tema-6{
+  top: 175px;
+  background-color: $posit-it-lovely;
+z-index: 2;
+}
   &-note {
+    display: block;
     margin: 0 Auto;
     max-width: 335px;
     background-color: var(--paperColor);
   }
-
   &-inptext {
     font-family: 'Montserrat Medium';
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -125,8 +207,16 @@ html {
   }
 
   &-card {
+    &:hover {
+      -webkit-transform: rotate(1deg);
+    -moz-transform: rotate(1deg);
+    -o-transform: rotate(1deg);
+    -ms-transform: rotate(1deg);
+
+    transform: rotate(1deg)scale(1.05);
+    }
     top: 30px;
-    border: 2px dashed var(--lineColor);
+    border: 2px dashed #f5f5f5;
     padding: 15px 15px;
     margin-left: 15px;
     position: relative;
@@ -135,13 +225,13 @@ html {
     flex-wrap: pre-wrap;
     max-width: 300px;
     margin-top: 10px;
-    -webkit-transform: rotate(1.5deg);
-    -moz-transform: rotate(1.5deg);
-    -o-transform: rotate(1.5deg);
-    -ms-transform: rotate(1.5deg);
-    transform: rotate(1.5deg);
+    -webkit-transform: rotate(1.6deg);
+    -moz-transform: rotate(1.6deg);
+    -o-transform: rotate(1.6deg);
+    -ms-transform: rotate(1.6deg);
+    transform: rotate(1.6deg);
     box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
-    background :#f0e9a0;
+    transition: all 1s ease;
     p,
     h4 {
       max-width: 300px;
@@ -157,7 +247,7 @@ html {
       font-family: 'Montserrat Medium';
     }
 
-    &-title:first-letter {
+    &-title:first-letter ,p{
       text-transform: capitalize;
     }
 
@@ -177,9 +267,24 @@ html {
   flex-direction: row;
   margin: 0 auto;
   max-width: 600px;
+  animation: my-animation 1s ease;
 }
 
-
+@keyframes my-animation {
+  0% {
+    transform: scale(1.01);
+  }
+  20% {
+    transform: scale(1.01);
+  }
+  60% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1.01);
+  }
+}
+ 
 input[type="date"] {
   background-color: var(--paperColor);
   color: var(--lineColor);
@@ -198,3 +303,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: var(--paperColor);
   color: var(--lineColor);
 }
+.padrao{
+  background :#f0e9a0;
+}
+
+.post-it-purple{
+  background-color: $post-it-purple;
+}.post-it-pink{background-color: $post-it-pink;}
+.post-it-blue{background-color: $post-it-blue;}.post-it-yellow{background-color: $post-it-yellow;}.post-it-green{background-color:$post-it-green ;}.posit-it-lovely{background-color:$posit-it-lovely ;}

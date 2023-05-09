@@ -1,0 +1,200 @@
+@font-face {
+  font-family: 'Montserrat Light';
+  src: url('/font/Montserrat-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Montserrat Medium';
+  src: url('/font/Montserrat-Medium.ttf');
+}
+
+$border: black;
+$white-smoke: #F5f5f5;
+$lineColor: rgba(49, 49, 49, 0.795);
+
+:root {
+  --paperColor: #ffc;
+  --lineColor: rgba(0, 0, 0, .3);
+
+  --lineSpacing: 2rem;
+  --lineHeight: 1px;
+  --dashWidth: 1px;
+  --dashGutter: 1px;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  background-color: $white-smoke ;
+}
+
+.App {
+  margin: 0 Auto;
+  text-align: center;
+
+  &-note {
+    margin: 0 Auto;
+    max-width: 335px;
+    background-color: var(--paperColor);
+  }
+
+  &-inptext {
+    font-family: 'Montserrat Medium';
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-indent: 1em;
+    text-align: center;
+    outline: none;
+    min-width: 329px;
+    max-width: 329px;
+    font-size: 15pt;
+    font-weight: 100;
+    background-color: var(--paperColor);
+    background-image: linear-gradient(to bottom, var(--lineColor) var(--lineHeight), transparent 1px);
+    background-size: 1px var(--lineSpacing);
+    border: 2px dashed var(--lineColor);
+    border-bottom: none;
+  }
+
+  &-inpdate {
+    outline: none;
+    min-width: 259px;
+    text-align: center;
+  }
+
+  //Database da onde eu tirei o efeito https://codepen.io/df/pen/YLpxRJ
+  &-effectpage {
+    display: inline-block;
+    background-color: var(--paperColor);
+    background-image: linear-gradient(to bottom, var(--lineColor) var(--lineHeight), transparent 1px);
+    background-size: 2px var(--lineSpacing);
+    border-bottom: 2px dashed var(--lineColor);
+  }
+
+  textarea {
+    font-family: 'Montserrat Light';
+    min-width: 329px;
+    max-width: 300px;
+    min-height: 160px;
+    outline: none;
+    font-size: 14pt;
+    text-align: left;
+    word-wrap: break-word;
+    text-indent: 2em;
+    line-height: var(--lineSpacing);
+    background-color: transparent;
+    background-image: linear-gradient(to left, var(--paperColor) var(--dashGutter), transparent var(--dashGutter));
+    background-size: calc(var(--dashGutter) + var(--dashWidth));
+    border-left: 2px dashed var(--lineColor);
+    border-right: 2px dashed var(--lineColor);
+    border-top: 2px dashed var(--lineColor);
+    margin: -3px 0px;
+    border-bottom: none;
+  }
+
+  &-Function {
+    background-color: var(--paperColor);
+    position: absolute;
+  }
+
+  button {
+    .App button hover {
+      transform: scale(3);
+    }
+
+    font-size: 12px;
+    font-family: 'Montserrat Medium';
+    background-color: var(--paperColor);
+    padding: 6px 12.3px;
+    margin-left: 2px;
+    border-bottom: 2px dashed var(--lineColor);
+    position: absolute;
+    border-top: none;
+    border-right: 2px dashed var(--lineColor);
+    border-left: none;
+    color: $lineColor;
+    cursor:pointer;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    right: -73px;
+
+  }
+
+  &-card {
+    top: 30px;
+    border: 2px dashed var(--lineColor);
+    padding: 15px 15px;
+    margin-left: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: pre-wrap;
+    max-width: 300px;
+    margin-top: 10px;
+    -webkit-transform: rotate(1.5deg);
+    -moz-transform: rotate(1.5deg);
+    -o-transform: rotate(1.5deg);
+    -ms-transform: rotate(1.5deg);
+    transform: rotate(1.5deg);
+    box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
+    background :#f0e9a0;
+    p,
+    h4 {
+      max-width: 300px;
+      word-wrap: break-word;
+    }
+
+    p {
+      font-family: 'Montserrat Light';
+
+    }
+
+    h4 {
+      font-family: 'Montserrat Medium';
+    }
+
+    &-title:first-letter {
+      text-transform: capitalize;
+    }
+
+    b {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+    }
+
+  }
+}
+
+.Flex {
+  padding: 5px 5px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+
+input[type="date"] {
+  background-color: var(--paperColor);
+  color: var(--lineColor);
+  font-size: 16pt;
+  border-bottom: 2px dashed;
+  border-left: 2px dashed;
+  border-top: none;
+  border-right: none;
+  position: relative;
+  left: 3px;
+  z-index: 1;
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: var(--paperColor);
+  color: var(--lineColor);
+}

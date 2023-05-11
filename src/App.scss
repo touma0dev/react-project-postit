@@ -17,6 +17,7 @@ $post-it-blue:#8dbdebab;
 $post-it-yellow:	#f2cd4f;
 $post-it-green:#88eed0;
 $posit-it-lovely:#fe6763;
+$transition: all 0.4s ease;
 :root {
   --paperColor: #ffc;
   --lineColor: rgba(0, 0, 0, .3);
@@ -48,32 +49,32 @@ html {
   }
   .App-note-tema-1.hover{
     transform: translate(19px,0);
-    transition: all 0.2s ease;
+    //transition: all 0.2s ease;
     width:45px;
   }
   .App-note-tema-2.hover{
     transform: translate(19px,0);
-    transition: all 0.2s ease;
+   // transition: all 0.2s ease;
     width:45px;
   }
   .App-note-tema-3.hover{
     transform: translate(19px,0);
-    transition: all 0.2s ease;
+    //transition: all 0.2s ease;
     width:45px;
   }
   .App-note-tema-4.hover{
     transform: translate(19px,0);
-    transition: all 0.2s ease;
+   // transition: all 0.2s ease;
     width:45px;
   }
   .App-note-tema-5.hover{
     transform: translate(19px,0);
-    transition: all 0.2s ease;
+    //transition: all 0.2s ease;
     width:45px;
   }
   .App-note-tema-6.hover{
     transform: translate(19px,0);
-    transition: all 0.2s ease;
+    //transition: all 0.2s ease;
     width:45px;
   }
   &-note-tema{
@@ -86,7 +87,7 @@ html {
     margin: 0 auto;
     width:35px;
     transform: translate(22px,0);
-    transition: all 0.4s ease;
+    transition: $transition;
     height: 30px;
     background-color: rgba(162, 0, 255, 0.466);
     border: 1px solid ;
@@ -116,8 +117,8 @@ html {
 &-note-tema-6{
   top: 175px;
   background-color: $posit-it-lovely;
-z-index: 2;
-}
+  z-index: 2;
+  }
   &-note {
     display: block;
     margin: 0 Auto;
@@ -176,7 +177,9 @@ z-index: 2;
     margin: -3px 0px;
     border-bottom: none;
   }
-
+.draggable{
+  position: relative;
+}
   &-Function {
     background-color: var(--paperColor);
     position: absolute;
@@ -207,6 +210,19 @@ z-index: 2;
   }
 
   &-card {
+    &-title{
+      .App-card-copy{
+        opacity: 0;
+      
+      }
+      &:hover{
+        .App-card-copy{
+          opacity:1;
+          cursor: pointer;
+        }
+      }
+    }
+    
     &:hover {
       -webkit-transform: rotate(1deg);
     -moz-transform: rotate(1deg);
@@ -231,7 +247,7 @@ z-index: 2;
     -ms-transform: rotate(1.6deg);
     transform: rotate(1.6deg);
     box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
-    transition: all 1s ease;
+   // transition: all 1s ease;
     p,
     h4 {
       max-width: 300px;
@@ -245,6 +261,7 @@ z-index: 2;
 
     h4 {
       font-family: 'Montserrat Medium';
+      
     }
 
     &-title:first-letter ,p{
@@ -256,17 +273,23 @@ z-index: 2;
       right: 0;
       cursor: pointer;
     }
-
+    x{
+      position: absolute;
+      
+      cursor: pointer;
+      left: 0;
+      color: $lineColor;
+    }
   }
 }
 
 .Flex {
-  padding: 5px 5px;
+  padding:21px 5px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 600px;
   animation: my-animation 1s ease;
 }
 
@@ -311,3 +334,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: $post-it-purple;
 }.post-it-pink{background-color: $post-it-pink;}
 .post-it-blue{background-color: $post-it-blue;}.post-it-yellow{background-color: $post-it-yellow;}.post-it-green{background-color:$post-it-green ;}.posit-it-lovely{background-color:$posit-it-lovely ;}
+.pos{
+  position: absolute;
+}

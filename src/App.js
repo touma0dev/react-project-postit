@@ -1,36 +1,42 @@
 import { useState, useEffect } from "react";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
-
+import { DragDropContext , Droppable ,Draggable} from "react-beautiful-dnd";
+import {AiOutlineCopy} from "react-icons/ai"
 import "./App.scss";
-
 function App() {
   const [input, setInput] = useState("");
   const [btn, setBtn] = useState([]);
   const [title, TitleCamp] = useState("");
   const [classe, Classecamp] = useState("");
-  
   const TitleChange = (event) => {
+    if (event.target.value === '') return;
     TitleCamp(event.target.value);
   };
   const handleChange = (event) => {
     setInput(event.target.value);
   };
-
   //Adicionar a informacao capturada dentro de um array
   const handleClick = () => {
+    if ( !input) {
+      return;
+    }
+  
     const newTask = {
-      id: Math.floor(Math.random() * 10000), // Gerar um ID aleatório único
+      id: Math.floor(Math.random() * 10000),
       classe: classe || "padrao",
       Titulo: title,
       tarefa: input,
-      Dia: formatDate(date),
+      Dia: formatDate(date)
     };
+  
     const newlist = [...btn, newTask];
     setBtn(newlist);
     setInput("");
+    TitleCamp("");
     localStorage.setItem("tasks", JSON.stringify(newlist));
   };
+  
   function formatDate(date) {
     const dateParts = date.split("-");
     const day = dateParts[2];
@@ -53,7 +59,6 @@ function App() {
     }
   }, []);
   const [date, setDate] = useState(getFormattedDate());
-
   function getFormattedDate() {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
@@ -61,7 +66,6 @@ function App() {
     const day = currentDate.getDate().toString().padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
-
   useEffect(() => {
     if (date === "") {
       setDate(getFormattedDate());
@@ -74,19 +78,18 @@ function App() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const bn = () => {
     const newTaske = [
-      { Class: "App-note-tema-1" ,color:"post-it-purple"},
-      { Class: "App-note-tema-2" ,color:"post-it-pink"},
-      { Class: "App-note-tema-3" ,color:"post-it-blue"},
-      { Class: "App-note-tema-4" ,color:"post-it-yellow"},
-      { Class: "App-note-tema-5" ,color:"post-it-green"},
-      { Class: "App-note-tema-6" ,color:"posit-it-lovely"},
+      { Class: "App-note-tema-1", color: "post-it-purple" },
+      { Class: "App-note-tema-2", color: "post-it-pink" },
+      { Class: "App-note-tema-3", color: "post-it-blue" },
+      { Class: "App-note-tema-4", color: "post-it-yellow" },
+      { Class: "App-note-tema-5", color: "post-it-green" },
+      { Class: "App-note-tema-6", color: "posit-it-lovely" },
     ];
     setBtno(newTaske);
   };
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
   };
-
   const handleMouseLeave = () => {
     setHoveredIndex(null);
   };
@@ -96,21 +99,29 @@ function App() {
   useEffect(() => {
     bn();
   }, []);
+  function handleOnDragEnd(result){
+    if(!result.destination) return;
+    const items=Array.from(btn);
+    const [reorderedItem]=items.splice(result.source.index,1);
+    items.splice(result.destination.index,0,reorderedItem)
+    setBtn(items)
+  }
+  const handleCopy = (content) => {
+    navigator.clipboard.writeText(content);
+  };
   return (
-    <div className="App">
-          {btnw.map((task, index) => (
-       
-       <div
-        key={index}
-         className={`App-note-tema ${task.Class} ${index === hoveredIndex ? 'hover' : ''}`}
-         onMouseEnter={() => handleMouseEnter(index)}
-         onMouseLeave={handleMouseLeave}
-         onClick={() => handleDivClick(task.color)}
-       >
-       </div>
-     ))}
+    <div className="App"> 
+      {btnw.map((task, index) => (
+        <div
+          key={index}
+          className={`App-note-tema ${task.Class} ${index === hoveredIndex ? 'hover' : ''}`}
+          onMouseEnter={() => handleMouseEnter(index)}
+          onMouseLeave={handleMouseLeave}
+          onClick={() => handleDivClick(task.color)}
+        >
+        </div>
+      ))}
       <div className="App-note">
-
         <input
           className="App-inptext"
           type="text"
@@ -142,26 +153,66 @@ function App() {
           </button>
         </div>
       </div>
-      <div className="App Flex">
-        {btn.map((task) => {
-          return (
-            <div className={`App-card ${task.classe}`} key={task.id}>
+      { function handleOnDragEnd(result){
+    if(!result.destination) return;
+    const items=Array.from(btn);
+    const [reorderedItem]=items.splice(result.source.index,1);
+    items.splice(result.destination.index,0,reorderedItem)
+    setBtn(items)
+  }
+  }
+      <DragDropContext onDragEnd={handleOnDragEnd}> 
+      
+  <div className="App Flex">
+  {btn.map((task, index) => (
+  <Droppable key={task.id} droppableId={`droppable-${task.id}`}>
+    {(provided) => (
+      <div
+        {...provided.droppableProps}
+        ref={provided.innerRef}
+        className="App"
+      >
+        <Draggable key={task.id} draggableId={`draggable-${task.id}`} index={index}>
+          {(provided) => (
+            <div
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              className={`App-card ${task.classe}`}
+            >
               <div className="App-before"></div>
               <b onClick={() => handleRemove(task.id)}>
                 <MdOutlineDeleteForever
                   style={{ height: "20px", width: "30px" }}
                 />
               </b>
-              <h4 className="App-card-title">{task.Titulo}</h4>
 
-              <p>{task.tarefa}</p>
+              <h4 className="App-card-title">
+  {task.Titulo}
+  <label className="App-card-copy" onClick={() => handleCopy(task.Titulo)}>
+    <AiOutlineCopy />
+  </label>
+</h4>
+<p className="App-card-title">
+  {task.tarefa}
+  <label className="App-card-copy" onClick={() => handleCopy(task.tarefa)}>
+    <AiOutlineCopy />
+  </label>
+</p>
               <span>{task.Dia}</span>
             </div>
-          );
-        })}
+          )}
+        </Draggable>
+        {provided.placeholder}
       </div>
-    </div>
-  );
-}
+    )}
+  </Droppable>
+))}
+
+  </div>
+</DragDropContext>
+
+</div>
+  );}
 
 export default App;

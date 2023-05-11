@@ -105,6 +105,9 @@ function App() {
     const [reorderedItem]=items.splice(result.source.index,1);
     items.splice(result.destination.index,0,reorderedItem)
     setBtn(items)
+    
+    localStorage.setItem("tasks", JSON.stringify(items));
+
   }
   const handleCopy = (content) => {
     navigator.clipboard.writeText(content);

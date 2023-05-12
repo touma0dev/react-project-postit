@@ -40,8 +40,6 @@ html {
 
 .App {
   transition: all 1s ease-out;
-
-  z-index: 99;
   margin: 0 Auto;
   text-align: center;
   &-theme{
@@ -122,6 +120,7 @@ html {
   &-note {
     display: block;
     margin: 0 Auto;
+    min-width: 335px;
     max-width: 335px;
     background-color: var(--paperColor);
   }
@@ -289,7 +288,7 @@ html {
   flex-wrap: wrap;
   flex-direction: row;
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 800px;
   animation: my-animation 1s ease;
 }
 

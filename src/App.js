@@ -16,7 +16,6 @@ function App() {
   const handleChange = (event) => {
     setInput(event.target.value);
   };
-  //Adicionar a informacao capturada dentro de um array
   const handleClick = () => {
     if ( !input) {
       return;
@@ -164,8 +163,7 @@ function App() {
     setBtn(items)
   }
   }
-      <DragDropContext onDragEnd={handleOnDragEnd}> 
-      
+<DragDropContext onDragEnd={handleOnDragEnd}> 
   <div className="App Flex">
   {btn.map((task, index) => (
   <Droppable key={task.id} droppableId={`droppable-${task.id}`}>

@@ -130,7 +130,7 @@ function App() {
           type="text"
           placeholder="Digite Seu Titulo Aqui..."
           onChange={TitleChange}
-          value={title}
+            
         />
         <br />
         <div className="App-effectpage">

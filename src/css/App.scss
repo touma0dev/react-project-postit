@@ -1,0 +1,355 @@
+@use 'color';
+@import 'navbar';
+
+@font-face {
+  font-family: "Montserrat Light";
+  src: url("/font/Montserrat-Light.ttf");
+}
+
+@font-face {
+  font-family: "Montserrat Medium";
+  src: url("/font/Montserrat-Medium.ttf");
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  //background-color: color.$white-smoke ;
+  z-index: 0;
+}
+main {
+  position: relative;
+}
+.App {
+  transition: all 1s ease-out;
+  margin: 0 Auto;
+  position: relative;
+  max-width: 376px;
+  min-width: 376px;
+  text-align: center;
+  &-theme {
+    position: relative;
+  }
+  &-temas{
+    max-width: 300px;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 0;
+  }
+  &-note-tema {
+    transform: scale(-0.65, 1);
+    display: block;
+    margin-top: 2.5px;
+    z-index: 0;
+    width: 35px;
+    transition: color.$transition;
+    height: 30px;
+    border: 1px dashed;
+  }
+  &-note-tema-1 {
+    background-color: color.$post-it-purple;
+  }
+  &-note-tema-2 {
+    background-color: color.$post-it-pink;
+  }
+  &-note-tema-3 {
+    background-color: color.$post-it-blue;
+  }
+  &-note-tema-4 {
+    background-color: color.$post-it-yellow;
+  }
+  &-note-tema-5 {
+    background-color: color.$post-it-green;
+  }
+  &-note-tema-6 {
+    background-color: color.$posit-it-lovely;
+  }
+  &-note {
+    z-index: 2;
+    position: relative;
+    display: block;
+    margin: 0 Auto;
+    min-width: 335px;
+    max-width: 335px;
+    background-color: color.$paperColor;
+  }
+  &-inptext {
+    font-family: "Montserrat Medium";
+    text-indent: 1em;
+    text-align: center;
+    outline: none;
+    min-width: 329px;
+    max-width: 329px;
+
+    font-size: 15pt;
+    font-weight: 100;
+    background-color: color.$paperColor;
+    background-image: linear-gradient(
+      to bottom,
+      color.$lineColor color.$lineHeight,
+      transparent 1px
+    );
+    background-size: 1px color.$lineSpacing;
+     border: 2px dashed color.$lineColor;
+    border-bottom: none;
+  }
+
+
+
+  //Database da onde eu tirei o efeito https://codepen.io/df/pen/YLpxRJ
+  &-effectpage {
+    position: relative;
+    display: inline-block;
+    background-color: color.$paperColor;
+    background-image: linear-gradient(
+      to bottom,
+      color.$lineColor color.$lineHeight,
+      transparent 1px
+      
+    );
+    background-size: 2px color.$lineSpacing;
+    border-bottom: 2px dashed color.$lineColor;
+    &-text{
+      font-family: "Montserrat Light";
+      min-width: 329px;
+      max-width: 300px;
+      min-height: 160px;
+      outline: none;
+      font-size: 14pt;
+      text-align: left;
+      word-wrap: break-word;
+      text-indent: 2em;
+      line-height:color.$lineSpacing;
+      background-color: transparent;
+      background-image: linear-gradient(
+        to left,
+        color.$paperColor color.$dashGutter,
+        transparent color.$dashGutter
+      );
+      background-size: calc(color.$dashGutter + color.$dashWidth);
+      border-left: 2px dashed color.$lineColor;
+      border-right: 2px dashed color.$lineColor;
+      border-top: 1.7px dashed color.$lineColor;
+      margin: -3px 0px;
+      border-bottom: none;
+    }
+  }
+  &-Function {
+    background-color: color.$paperColor;
+    position: absolute;
+    &-label{
+      min-width: 332px;
+      max-width: 330px;
+      position: relative;
+      &-btn{
+          font-size: 12px;
+          font-family: "Montserrat Medium";
+          background-color: color.$paperColor;
+          padding: 6px 13.1px;
+          margin-left: 2px;
+          border-bottom: 2px dashed color.$lineColor;
+          position: absolute;
+          border-top: none;
+          border-right: 2px dashed color.$lineColor;
+          border-left: none;
+          color: color.$lineColor;
+          cursor: pointer;
+          bottom: 0;
+          top: 0;
+          right: 0;
+          align-items: center;
+          display: flex;
+      }
+
+      &-InputDate{
+        background-color: color.$paperColor;
+        color: color.$lineColor;
+        font-size: 16pt;
+        border-bottom: 2px dashed;
+        border-left: 2px dashed;
+        border-top: none;
+        border-right: none;
+        left: -40.5px;
+        position: relative;
+        width: 73.8%;
+        outline: none;
+        text-align: center;
+        ::-webkit-calendar-picker-indicator {
+          background-color: color.$paperColor;
+          color: color.$lineColor;
+        }
+      }
+    }
+  }
+
+ 
+  &-card {
+    &-title {
+      .App-card-copy {
+        opacity: 0;
+      }
+      &:hover {
+        .App-card-copy {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &:hover {
+      -webkit-transform: rotate(1deg);
+      -moz-transform: rotate(1deg);
+      -o-transform: rotate(1deg);
+      -ms-transform: rotate(1deg);
+      transform: rotate(1deg) scale(1.05);
+    }
+    top: 30px;
+    border: 2px dashed #f5f5f5;
+    padding: 15px 15px;
+    margin-left: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 20px;
+    margin-top: 10px;
+    -webkit-transform: rotate(1.6deg);
+    -moz-transform: rotate(1.6deg);
+    -o-transform: rotate(1.6deg);
+    -ms-transform: rotate(1.6deg);
+    transform: rotate(1.6deg);
+    box-shadow: 0 10px 10px 2px color.$lineColor;
+    // transition: all 1s ease;
+    p,
+    h4 {
+      max-width: 300px;
+      word-wrap: break-word;
+    }
+
+    p {
+      font-family: "Montserrat Light";
+    }
+
+    h4 {
+      font-family: "Montserrat Medium";
+    }
+
+    
+  }
+}
+
+.Flex {    
+  max-width: 800px;
+  padding: 21px 5px;
+  display: flex;
+  justify-content:safe;
+  
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 0 auto;
+  text-align: center;
+  span{
+    text-align: right;
+  }
+  animation: my-animation 1s ease;
+  &-title:first-letter,
+    p {
+     
+      text-transform: capitalize;
+      padding: 14px 0 px;
+    }
+
+    b {
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+    }
+    x {
+      position: absolute;
+
+      cursor: pointer;
+      left: 0;
+      color: color.$lineColor;
+    }
+}
+
+@keyframes my-animation {
+  0% {
+    transform: scale(1.01);
+  }
+  20% {
+    transform: scale(1.01);
+  }
+  60% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1.01);
+  }
+}
+
+
+
+
+.padrao {
+  background: #f0e9a0;
+}
+
+.post-it-purple {
+  background-color: color.$post-it-purple;
+}
+.post-it-pink {
+  background-color: color.$post-it-pink;
+}
+.post-it-blue {
+  background-color: color.$post-it-blue;
+}
+.post-it-yellow {
+  background-color: color.$post-it-yellow;
+}
+.post-it-green {
+  background-color: color.$post-it-green;
+}
+.posit-it-lovely {
+  background-color: color.$posit-it-lovely;
+}
+
+
+.App-note-tema-1.hover,
+.App-note-tema-2.hover,
+.App-note-tema-3.hover,
+.App-note-tema-4.hover,
+.App-note-tema-5.hover,
+.App-note-tema-6.hover {
+  width: 45px;
+  // animation:1.5s ease;
+  transform: scale(-0.65, 1)translateX(12px);
+  // transition: 1.5s all ease;
+}
+
+@keyframes my-animation {
+  0% {
+    transform: scale(1.01);
+  }
+  20% {
+    transform: scale(1.01);
+  }
+  60% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1.01);
+  }
+}
+.marcador {
+  position: relative; /* permite posicionar a ponta */
+  display: inline-block; /* permite definir largura e altura */
+  border-bottom: 1px solid black; /* remove a borda do lado direito */
+  width: 12px; /* largura da ponta */
+  height: 12px; /* altura da ponta */
+  
+}
+

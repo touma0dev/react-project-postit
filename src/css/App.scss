@@ -10,19 +10,33 @@
   font-family: "Montserrat Medium";
   src: url("/font/Montserrat-Medium.ttf");
 }
-
-
 * {
+  
   box-sizing: border-box;
 }
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: color.$background-nav #ffffff;
+  }
 
-body,
-html {
-  //background-color: color.$white-smoke ;
-  z-index: 0;
-}
-main {
-  position: relative;
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 18px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background:#9999998f;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: color.$background-nav;
+    border-radius: 0px;
+    border: 1px solid #ffffff56;
+  }
+main{
+  margin-top: 75pt;
 }
 .App {
   transition: all 1s ease-out;
@@ -40,34 +54,6 @@ main {
     position: absolute;
     z-index: 0;
   }
-  &-note-tema {
-    transform: scale(-0.65, 1);
-    display: block;
-    margin-top: 2.5px;
-    z-index: 0;
-    width: 35px;
-    transition: color.$transition;
-    height: 30px;
-    border: 1px dashed;
-  }
-  &-note-tema-1 {
-    background-color: color.$post-it-purple;
-  }
-  &-note-tema-2 {
-    background-color: color.$post-it-pink;
-  }
-  &-note-tema-3 {
-    background-color: color.$post-it-blue;
-  }
-  &-note-tema-4 {
-    background-color: color.$post-it-yellow;
-  }
-  &-note-tema-5 {
-    background-color: color.$post-it-green;
-  }
-  &-note-tema-6 {
-    background-color: color.$posit-it-lovely;
-  }
   &-note {
     z-index: 2;
     position: relative;
@@ -75,8 +61,39 @@ main {
     margin: 0 Auto;
     min-width: 335px;
     max-width: 335px;
-    background-color: color.$paperColor;
+    background-color: color.$background-color;
   }
+    &-note-tema {
+      transform: scale(-0.65, 1);
+      display: block;
+      transition: color.$transition-1s;
+      margin-top: 2.5px;
+      z-index: 0;
+      width: 35px;
+      transition: color.$transition-04s;
+      height: 30px;
+      border: 1px dashed;
+    }
+    &-note-tema-1 {
+
+      background-color: color.$post-it-purple;
+    }
+    &-note-tema-2 {
+      background-color: color.$post-it-pink;
+    }
+    &-note-tema-3 {
+      background-color: color.$post-it-blue;
+    }
+    &-note-tema-4 {
+      background-color: color.$post-it-yellow;
+    }
+    &-note-tema-5 {
+      background-color: color.$post-it-green;
+    }
+    &-note-tema-6 {
+      background-color: color.$posit-it-lovely;
+    }
+
   &-inptext {
     font-family: "Montserrat Medium";
     text-indent: 1em;
@@ -84,8 +101,7 @@ main {
     outline: none;
     min-width: 329px;
     max-width: 329px;
-
-    font-size: 15pt;
+    font-size:color.$font-16pt;
     font-weight: 100;
     background-color: color.$paperColor;
     background-image: linear-gradient(
@@ -97,9 +113,6 @@ main {
      border: 2px dashed color.$lineColor;
     border-bottom: none;
   }
-
-
-
   //Database da onde eu tirei o efeito https://codepen.io/df/pen/YLpxRJ
   &-effectpage {
     position: relative;
@@ -109,7 +122,6 @@ main {
       to bottom,
       color.$lineColor color.$lineHeight,
       transparent 1px
-      
     );
     background-size: 2px color.$lineSpacing;
     border-bottom: 2px dashed color.$lineColor;
@@ -119,7 +131,7 @@ main {
       max-width: 300px;
       min-height: 160px;
       outline: none;
-      font-size: 14pt;
+      font-size: color.$font-14pt;
       text-align: left;
       word-wrap: break-word;
       text-indent: 2em;
@@ -146,10 +158,10 @@ main {
       max-width: 330px;
       position: relative;
       &-btn{
-          font-size: 12px;
+          font-size:color.$font-10pt;
           font-family: "Montserrat Medium";
           background-color: color.$paperColor;
-          padding: 6px 13.1px;
+          padding: 6px 10px;
           margin-left: 2px;
           border-bottom: 2px dashed color.$lineColor;
           position: absolute;
@@ -164,11 +176,11 @@ main {
           align-items: center;
           display: flex;
       }
-
       &-InputDate{
+        
         background-color: color.$paperColor;
         color: color.$lineColor;
-        font-size: 16pt;
+        font-size: color.$font-16pt;
         border-bottom: 2px dashed;
         border-left: 2px dashed;
         border-top: none;
@@ -185,17 +197,19 @@ main {
       }
     }
   }
-
- 
   &-card {
+    
     &-title {
+      @include color.flex-center;
       .App-card-copy {
         opacity: 0;
+        align-items: center;
       }
       &:hover {
         .App-card-copy {
           opacity: 1;
           cursor: pointer;
+          transition: all ease 1s;
         }
       }
     }
@@ -206,15 +220,17 @@ main {
       -o-transform: rotate(1deg);
       -ms-transform: rotate(1deg);
       transform: rotate(1deg) scale(1.05);
+      transition: color.$transition-04s;
     }
     top: 30px;
     border: 2px dashed #f5f5f5;
-    padding: 15px 15px;
+    padding: 0px 17px;
     margin-left: 15px;
     position: relative;
     display: flex;
     flex-direction: column;
     min-width: 20px;
+    // max-width: 135px;
     margin-top: 10px;
     -webkit-transform: rotate(1.6deg);
     -moz-transform: rotate(1.6deg);
@@ -222,7 +238,6 @@ main {
     -ms-transform: rotate(1.6deg);
     transform: rotate(1.6deg);
     box-shadow: 0 10px 10px 2px color.$lineColor;
-    // transition: all 1s ease;
     p,
     h4 {
       max-width: 300px;
@@ -230,23 +245,25 @@ main {
     }
 
     p {
-      font-family: "Montserrat Light";
+    @include color.font-card-p;
+ 
     }
 
     h4 {
-      font-family: "Montserrat Medium";
+      @include color.font-card-h4;
     }
-
+    span{
+      @include color.font-card-p;
+    }
     
   }
 }
 
 .Flex {    
-  max-width: 800px;
+  max-width: 988px;
   padding: 21px 5px;
   display: flex;
   justify-content:safe;
-  
   flex-wrap: wrap;
   flex-direction: row;
   margin: 0 auto;
@@ -257,9 +274,8 @@ main {
   animation: my-animation 1s ease;
   &-title:first-letter,
     p {
-     
       text-transform: capitalize;
-      padding: 14px 0 px;
+      padding: 0px 3px;
     }
 
     b {
@@ -295,9 +311,8 @@ main {
 
 
 .padrao {
-  background: #f0e9a0;
+  background: color.$padrao;
 }
-
 .post-it-purple {
   background-color: color.$post-it-purple;
 }
@@ -325,9 +340,8 @@ main {
 .App-note-tema-5.hover,
 .App-note-tema-6.hover {
   width: 45px;
-  // animation:1.5s ease;
+  transition: color.$transition-1s;
   transform: scale(-0.65, 1)translateX(12px);
-  // transition: 1.5s all ease;
 }
 
 @keyframes my-animation {
@@ -344,12 +358,24 @@ main {
     transform: scale(1.01);
   }
 }
-.marcador {
-  position: relative; /* permite posicionar a ponta */
-  display: inline-block; /* permite definir largura e altura */
-  border-bottom: 1px solid black; /* remove a borda do lado direito */
-  width: 12px; /* largura da ponta */
-  height: 12px; /* altura da ponta */
+.Sobre{
+  min-width: 300px;
+  max-width: 700px;
+  margin: 0 auto;
+&-Details{
+margin: 50px;
   
+  word-wrap: break-word;
+  h1,h2,h3,h4,h5,h6{
+    @include color.font-card-h4;
+    text-align: justify;
+  }
+  p,a,li{
+    @include color.font-card-p;
+  
+  }
+  p{
+    text-indent: 1em;
+  }
 }
-
+}

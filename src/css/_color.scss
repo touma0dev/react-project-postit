@@ -1,17 +1,62 @@
+
 $border: black;
 $white-smoke: #f5f5f5;
+$paperColor: #ffc;
+$background-color: #ffc;
+$background-nav:rgba(255, 227, 71, 0.5);
+$padrao: #f0e9a0;
 $post-it-purple: #c7003f;
 $post-it-pink: #f90050;
 $post-it-blue: #8dbdebab;
-$paperColor: #ffc;
 $post-it-yellow: #f2cd4f;
 $post-it-green: #88eed0;
 $posit-it-lovely: #fe6763;
 $shadown: rgba(0, 0, 0, 0.1);
 $lineColor: rgba(49, 49, 49, 0.795);
 $lineColor: rgba(0, 0, 0, 0.3);
-$transition: all 0.4s ease;
+$transition-04s: all 0.4s ease;
+$transition-1s: all 1s ease;
 $lineSpacing: 2rem;
 $lineHeight: 1px;
 $dashWidth: 1px;
 $dashGutter: 1px;
+$font-16pt: 16pt;
+$font-14pt: 14pt;
+$font-13pt: 13pt;
+$font-12pt: 12pt;
+$font-11pt: 11pt;
+$font-10pt: 10pt;
+@mixin font-card-p{
+    font-family: "Montserrat Light";
+    font-size: $font-12pt;
+    word-break: break-all;
+    text-align: left;
+    font-weight:bolder; 
+}
+@mixin font-card-h4{
+    font-size: $font-16pt;
+    font-weight:bolder; 
+    text-align: justify;
+    text-align: center;
+    font-family: "Montserrat Medium";
+}
+@mixin flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin for-phone-only {
+    @media (max-width: 490px) { @content; }
+  }
+  @mixin for-tablet-portrait-up {
+    @media (min-width: 600px) { @content; }
+  }
+  @mixin for-tablet-landscape-up {
+    @media (min-width: 900px) { @content; }
+  }
+  @mixin for-desktop-up {
+    @media (min-width: 1200px) { @content; }
+  }
+  @mixin for-big-desktop-up {
+    @media (min-width: 1800px) { @content; }
+  }

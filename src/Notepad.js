@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
-import { DragDropContext , Droppable , Draggable} from "react-beautiful-dnd";
-import {AiOutlineCopy} from "react-icons/ai"
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { AiOutlineCopy } from "react-icons/ai";
 // import "./css/App.scss";
 function Notepad() {
   const [input, setInput] = useState("");
@@ -10,32 +10,32 @@ function Notepad() {
   const [title, TitleCamp] = useState("");
   const [classe, Classecamp] = useState("");
   const TitleChange = (event) => {
-    if (event.target.value === '') return;
+    // if (event.target.value === '') return;
     TitleCamp(event.target.value);
   };
   const handleChange = (event) => {
     setInput(event.target.value);
   };
   const handleClick = () => {
-    if ( !input) {
+    if (!input) {
       return;
     }
-  
+    setInput("");
+    TitleCamp("");
     const newTask = {
       id: Math.floor(Math.random() * 10000),
       classe: classe || "padrao",
       Titulo: title,
       tarefa: input,
-      Dia: formatDate(date)
+      Dia: formatDate(date),
     };
-  
+
     const newlist = [...btn, newTask];
     setBtn(newlist);
-    setInput("");
-    TitleCamp("");
+
     localStorage.setItem("tasks", JSON.stringify(newlist));
   };
-  
+
   function formatDate(date) {
     const dateParts = date.split("-");
     const day = dateParts[2];
@@ -93,20 +93,19 @@ function Notepad() {
     setHoveredIndex(null);
   };
   function handleDivClick(value) {
-    Classecamp(value)
+    Classecamp(value);
   }
   useEffect(() => {
     bn();
   }, []);
-  function handleOnDragEnd(result){
-    if(!result.destination) return;
-    const items=Array.from(btn);
-    const [reorderedItem]=items.splice(result.source.index,1);
-    items.splice(result.destination.index,0,reorderedItem)
-    setBtn(items)
-    
-    localStorage.setItem("tasks", JSON.stringify(items));
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+    const items = Array.from(btn);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setBtn(items);
 
+    localStorage.setItem("tasks", JSON.stringify(items));
   }
   const handleCopy = (content) => {
     navigator.clipboard.writeText(content);
@@ -114,119 +113,125 @@ function Notepad() {
   return (
     <div>
       <div className="marcador"></div>
-    <div className="App"> 
+      <div className="App">
         <div className="App-temas">
-        {btnw.map((task, index) => (
-                  <div
-                    key={index}
-                    className={`App-note-tema ${task.Class} ${index === hoveredIndex ? 'hover' : ''}`}
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={() => handleDivClick(task.color)}
-                  >
-                  </div>
-                ))}
-        </div>
-      <div className="App-note">
-        
-        <input
-          className="App-inptext"
-          type="text"
-          placeholder="Digite Seu Titulo Aqui..."
-          onChange={TitleChange}          
-        />
-        
-        <div className="App-effectpage">
-
-       <div className="App-effectpage-background">
-       <textarea
-          className="App-effectpage-text"
-            placeholder="Hoje eu comi 3 biscoitos com morango..."
-            value={input}
-            onChange={handleChange}
-          />
-       </div>
-        </div>
-        <div className="App-Function">
-       <div className="App-Function-label">
-       <input
-            className='App-Function-label-InputDate'
-            min="2023-01-01"
-            max="2024-01-01"
- 
-            type="date"
-            value={date}
-            onChange={handleDateChange}
-          />
-          <button className="App-Function-label-btn" onClick={handleClick}>
-            Anotar
-            <BsPencilSquare style={{ height: "15px", width: "12px" }} />
-          </button>
-       </div>
-        </div>
-
-      </div>
-      { function handleOnDragEnd(result){
-    if(!result.destination) return;
-    const items=Array.from(btn);
-    const [reorderedItem]=items.splice(result.source.index,1);
-    items.splice(result.destination.index,0,reorderedItem)
-    setBtn(items)
-  }
-  }
-
-
-</div>
-<DragDropContext onDragEnd={handleOnDragEnd}> 
-  <div className=" Flex">
-  {btn.map((task, index) => (
-  <Droppable key={task.id} droppableId={`droppable-${task.id}`}>
-    {(provided) => (
-      <div
-        {...provided.droppableProps}
-        ref={provided.innerRef}
-        
-      >
-        <Draggable key={task.id} draggableId={`draggable-${task.id}`} index={index}>
-          {(provided) => (
+          {btnw.map((task, index) => (
             <div
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-              ref={provided.innerRef}
-              className={`App-card ${task.classe}`}
-            >
-              <div className="App-before"></div>
-              <b onClick={() => handleRemove(task.id)}>
-                <MdOutlineDeleteForever
-                  style={{ height: "20px", width: "30px" }}
-                />
-              </b>
+              key={index}
+              className={`App-note-tema ${task.Class} ${
+                index === hoveredIndex ? "hover" : ""
+              }`}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
+              onClick={() => handleDivClick(task.color)}
+            ></div>
+          ))}
+        </div>
+        <div className="App-note">
+          <input
+            className="App-inptext"
+            type="text"
+            placeholder="Digite Seu Titulo Aqui..."
+            onChange={TitleChange}
+            value={title}
+          />
 
-              <h4 className="App-card-title">
-  {task.Titulo}
-  <label className="App-card-copy" onClick={() => handleCopy(task.Titulo)}>
-    <AiOutlineCopy />
-  </label>
-</h4>
-<p className="App-card-title">
-  {task.tarefa}
-  <label className="App-card-copy" onClick={() => handleCopy(task.tarefa)}>
-    <AiOutlineCopy />
-  </label>
-</p>
-              <span>{task.Dia}</span>
+          <div className="App-effectpage">
+            <div className="App-effectpage-background">
+              <textarea
+                className="App-effectpage-text"
+                placeholder="Hoje eu comi 3 biscoitos com morango..."
+                value={input}
+                onChange={handleChange}
+              />
             </div>
-          )}
-        </Draggable>
-        {provided.placeholder}
+          </div>
+          <div className="App-Function">
+            <div className="App-Function-label">
+              <input
+                className="App-Function-label-InputDate"
+                min="2023-01-01"
+                max="2024-01-01"
+                type="date"
+                value={date}
+                onChange={handleDateChange}
+              />
+              <button className="App-Function-label-btn" onClick={handleClick}>
+                Anotar
+                <BsPencilSquare style={{ height: "15px", width: "12px" }} />
+              </button>
+            </div>
+          </div>
+        </div>
+        {function handleOnDragEnd(result) {
+          if (!result.destination) return;
+          const items = Array.from(btn);
+          const [reorderedItem] = items.splice(result.source.index, 1);
+          items.splice(result.destination.index, 0, reorderedItem);
+          setBtn(items);
+        }}
       </div>
-    )}
-  </Droppable>
-))}
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <div className=" Flex">
+          {btn.map((task, index) => (
+            <Droppable key={task.id} droppableId={`droppable-${task.id}`}>
+              {(provided) => (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  <Draggable
+                    key={task.id}
+                    draggableId={`draggable-${task.id}`}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <div
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                        className={`App-card ${task.classe}`}
+                      >
+                        <div className="App-before"></div>
+                        <b onClick={() => handleRemove(task.id)}>
+                          <MdOutlineDeleteForever
+                            style={{ height: "20px", width: "30px" }}
+                          />
+                        </b>
 
-  </div>
-</DragDropContext>
-</div>
-  );}
+                        <h4 className="App-card-title">
+                          {task.Titulo}
+                          {task.Titulo && (
+                            <label
+                              className="App-card-copy"
+                              onClick={() => handleCopy(task.Titulo)}
+                            >
+                              <AiOutlineCopy />
+                            </label>
+                          )}
+                        </h4>
+                        <p className="App-card-title">
+                          {task.tarefa}
+                          {task.tarefa && (
+                            <label
+                              className="App-card-copy"
+                              onClick={() => handleCopy(task.tarefa)}
+                            >
+                              <AiOutlineCopy />
+                            </label>
+                          )}
+                        </p>
 
-export default  Notepad;
+                        <span>{task.Dia}</span>
+                      </div>
+                    )}
+                  </Draggable>
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          ))}
+        </div>
+      </DragDropContext>
+    </div>
+  );
+}
+
+export default Notepad;

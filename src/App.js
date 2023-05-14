@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import ErrorPage from "./Errorpage";
 import Navbar from "./Navbar";
+import Sobre from "./Sobre";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -15,8 +16,14 @@ export default function App() {
       errorElement: <ErrorPage />,
       children:[
       {
-        path :"/notas",
+        path :"/",
         element: <Notepad/>,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path :"/sobre",
+        element: <Sobre/>,
+        errorElement: <ErrorPage />,
       }
       ],
     },

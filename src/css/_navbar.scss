@@ -166,14 +166,14 @@ li,a{
 }
 
 .Nav-Toggle-body{
-  // display: none;
+  display: none;
   position: fixed;
   max-width: 300px;
   margin: 0 auto;
   left: 15%;
   right: 0;
   top: 65%;
-  // @include  color.for-phone-only {  display: block; }
+  @include  color.for-phone-only {  display: block; }
 }
   .Toggle-menu-toggled {
     width: 16px;
